@@ -1,6 +1,7 @@
 package com.mortgageCalculator;
 
 import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Scanner;
 
 import static com.mortgageCalculator.Validation.*;
@@ -10,7 +11,7 @@ public class MortgageCalculator {
 
 
     public static Integer getPrincipal(Scanner scanner) {
-        System.out.print("Principal: ");
+        System.out.print("Principal (1K - $1M): ");
         try {
             return checkPrincipalValidation(scanner);
         } catch (NumberFormatException e) {
@@ -24,7 +25,7 @@ public class MortgageCalculator {
         try {
             return checkInterestValidation(scanner);
         } catch (NumberFormatException e) {
-            System.out.println("its working");
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -34,7 +35,7 @@ public class MortgageCalculator {
         try {
             return checkPeriodValidation(scanner);
         } catch (NumberFormatException e) {
-            System.out.println("its working");
+            System.out.println(e.getMessage());
         }
         return null;
 
@@ -52,12 +53,18 @@ public class MortgageCalculator {
 
     public static void runMortgageCalculator() {
         Scanner scanner = new Scanner(System.in);
+
         final byte MONTHS_IN_YEAR = 12;
         final byte PERCENT = 100;
 
-        getMortgage(getPrincipal(scanner), getAnnualInterestRate(scanner), getPeriod(scanner), PERCENT, MONTHS_IN_YEAR);
+            System.out.println("MORTGAGE CALCULATOR");
+
+            getMortgage(getPrincipal(scanner), getAnnualInterestRate(scanner), getPeriod(scanner), PERCENT, MONTHS_IN_YEAR);
 
     }
 
 
 }
+
+
+
