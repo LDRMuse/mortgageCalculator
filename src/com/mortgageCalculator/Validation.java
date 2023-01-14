@@ -48,12 +48,16 @@ static int periodInYears;
         while (true) {
             if (scanner.hasNextInt()) {
                 periodInYears = scanner.nextInt();
-                return periodInYears;
+                if (periodInYears >= 1 && periodInYears <= 30) {
+                    break;
+                }
+                System.out.println(periodInYears + " Please enter a Period (year) between 1 and 30:");
             } else {
                 System.out.println(scanner.nextLine() + " is not a valid period");
                 System.out.print("Please enter correct Period (Years): ");
             }
         }
+        return periodInYears;
     }
 
 
