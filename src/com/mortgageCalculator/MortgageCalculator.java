@@ -46,7 +46,6 @@ public class MortgageCalculator {
         float monthlyInterest = interestRate / PERCENT / MONTHS_IN_YEAR;
         int numberOfPayments = period * MONTHS_IN_YEAR;
         double mathPower = Math.pow(1 + monthlyInterest, numberOfPayments);
-        //        return NumberFormat.getCurrencyInstance().format(monthlyPayment);
         return principal * (monthlyInterest * mathPower / (mathPower - 1));
 
     }
@@ -71,14 +70,15 @@ public class MortgageCalculator {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("MORTGAGE CALCULATOR");
-        String mortgage = String.valueOf(getMortgage(getPrincipal(scanner), getAnnualInterestRate(scanner), getPeriod(scanner), PERCENT, MONTHS_IN_YEAR));
-        System.out.print("MORTGAGE: " + mortgage);
+        double mortgage = getMortgage(getPrincipal(scanner), getAnnualInterestRate(scanner), getPeriod(scanner), PERCENT, MONTHS_IN_YEAR);
+
+        System.out.print("MORTGAGE: " + NumberFormat.getCurrencyInstance().format(mortgage));
         System.out.println(" ");
         System.out.println(" ");
 
 
         System.out.println("BALANCE:");
-        calculateBalance(principal, interest, Double.parseDouble(mortgage));
+        calculateBalance(principal, interest, mortgage);
 
     }
 
